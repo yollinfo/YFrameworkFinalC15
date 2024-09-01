@@ -1,12 +1,10 @@
 package ui_automation.utilities;
 
-import com.google.common.base.Function;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,10 +13,6 @@ import static org.junit.Assert.assertTrue;
 
 
 public class Helper {
-
-
-
-
 
     public static void hover(WebElement element) {
         Actions actions = new Actions(Driver.getInstance().getDriver());
@@ -118,7 +112,7 @@ public class Helper {
     }
 
     public void jSClick(WebElement element){
-        JavascriptExecutor jse = (JavascriptExecutor)Driver.getInstance().getDriver();
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.getInstance().getDriver();
         jse.executeScript("arguments[0].click();", element);
     }
 

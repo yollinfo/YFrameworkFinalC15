@@ -10,6 +10,7 @@ import java.util.List;
 
 public class OhrmEmployeesPage {
     WebDriver driver;
+
     public OhrmEmployeesPage(){
         driver= Driver.getInstance().getDriver();
         PageFactory.initElements(driver, this);

@@ -17,9 +17,18 @@ public class Hooks {
 
     @Before
     public void setUp(){
-        driver= BrowserFactory.createInstance();
+        // actual driver whether is chromedriver or edgedriver will come from BrowserFactory
+        // let's assume there is no browser property
+        // BrowserFactory.createInstance() will return new ChromeDriver
+        driver = BrowserFactory.createInstance();
+        // driver = new ChromeDriver();
+        // Get the instance of Driver class from JVM which is SingleTon
+        // call the setDriver() of that instance, and pass parameter
+        // the parameter will first find it's way to the SingleTon Class
+        // based on ThreadNumber it'll find the way to ThreadLocal
         Driver.getInstance().setDriver(driver);
-        driver=Driver.getInstance().getDriver();
+        // Driver.getInstance().getDriver() will be only option to reach out that driver
+        driver = Driver.getInstance().getDriver();
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
@@ -28,10 +37,10 @@ public class Hooks {
 
     @After
     public void tearDown(Scenario scenario) {
-        if (scenario.isFailed()) {
+//        if (scenario.isFailed()) {
             final byte[] screenshot = ((TakesScreenshot) Driver.getInstance().getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png");
-        }
+//        }
        Driver.getInstance().removeDriver();
     }
 }

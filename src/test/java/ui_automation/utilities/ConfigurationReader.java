@@ -1,18 +1,40 @@
 package ui_automation.utilities;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+
 public class ConfigurationReader {
-    private static Properties properties;
+
+    /**
+     * The getProperty() is designed to read the .properties file and
+     * return the value of respective key
+     *
+     * @param fileName
+     * @param key
+     * @return
+     */
     public static String getProperty(String fileName, String key) {
+        // Create a properties object
+        Properties properties = new Properties();
         try {
-            String path = "src/test/resources/"+ fileName;
+            // complete the path
+            String path = "src" +
+                    File.separator +
+                    "test" +
+                    File.separator +
+                    "resources" + File.separator + fileName;
+            // read the file as fileInputStream
             FileInputStream stream = new FileInputStream(path);
-            properties = new Properties();
+            // load properties object with fileInputStream
             properties.load(stream);
+            //close the stream
             stream.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return properties.getProperty(key); }
+        // return the value of key
+        return properties.getProperty(key);
+    }
 }

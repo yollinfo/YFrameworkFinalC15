@@ -4,8 +4,6 @@ import io.cucumber.java.en.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ui_automation.pages.OhrmEmployeesPage;
 import ui_automation.utilities.*;
 public class OhrmEmployeesStep {
@@ -19,9 +17,13 @@ public class OhrmEmployeesStep {
 
     @Given("I'm on logged in to OrangeHRM as admin")
     public void i_m_on_logged_in_to_OrangeHRM_as_admin() {
-        //Go to URL
-        Driver.getInstance().getDriver().get(ConfigurationReader.getProperty("ui-config.properties","yollhrm.url"));
-        ohrmEmployeesPage.userNameInput.sendKeys(ConfigurationReader.getProperty("ui-config.properties","yollhrm.username"));
+        // Navigate to application
+        String url = ConfigurationReader.getProperty("ui-config.properties","yollhrm.url");
+        Driver.getInstance().getDriver().get(url);
+        // enter valid username
+        String username = ConfigurationReader.getProperty("ui-config.properties","yollhrm.username");
+        ohrmEmployeesPage.userNameInput.sendKeys(username);
+        // enter valid username
         ohrmEmployeesPage.passwordInput.sendKeys(ConfigurationReader.getProperty("ui-config.properties","yollhrm.password"));
         ohrmEmployeesPage.loginBtn.click();
         oLog.info("I have entered login information and then clicked on login button");

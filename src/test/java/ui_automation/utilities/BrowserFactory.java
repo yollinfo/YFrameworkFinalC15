@@ -12,21 +12,48 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
 public class BrowserFactory {
+    /**
+     * the createInstance method will create different browser instances
+     * based on the need.
+     * If we execute through the command line like below, by specifying the type of browser
+     * `mvn clean test -Dtest=UITestRunner -Dbrowser=chromeRemote`
+     * if we don't specify the type of browser from command line, or execute though IDE,
+     * JVM won't have browser property
+     *
+     * mvn clean test -Dtest=UITestRunner
+     *
+     * @return WebDriver instance
+     */
         public static WebDriver createInstance() {
 
             WebDriver driver = null;
 
             try {
-                if (driver == null) {
                     if(System.getProperty("browser")==null){
+                        // because of the selenium version 3, we need to specify where is the exec file
+                        // Boni Garcia Library is profiding below line to find out during runtime
                         WebDriverManager.chromedriver().setup();
+                        // Create a key/value of ther preferences
                         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-                        chromePrefs.put("download.default_directory", System.getProperty("user.dir")+"\\src\\test\\resources\\testData\\Downloads");
+                        String path = System.getProperty("user.dir")+
+                                File.separator +
+                                "src" +
+                                File.separator +
+                                "test" +
+                                File.separator +
+                                "resources" +
+                                File.separator +
+                                "testData" +
+                                File.separator +
+                                "Downloads";
+                        chromePrefs.put("download.default_directory", path);
+                        // create the Chrome Options
                         ChromeOptions options = new ChromeOptions();
                         options.addArguments("--ignore-ssl-errors=yes");
                         options.addArguments("--ignore-certificate-errors");
@@ -97,7 +124,7 @@ public class BrowserFactory {
                                 break;
                         }
                     }
-                }
+
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;

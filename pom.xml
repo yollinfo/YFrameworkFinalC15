@@ -119,6 +119,8 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+<!--            Maven SureFire Plugin is making our project to support paralel execution as well -->
+<!--            If we have more than 1 feature in execution, the feature files will executed in parallel mode-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -129,6 +131,8 @@
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+<!--            Maven-cucumber-reporting plugin will generate the maven cucumber reports as part of verify phase-->
+<!--            The reports will be under cucumber-html-report folder of target directory-->
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>

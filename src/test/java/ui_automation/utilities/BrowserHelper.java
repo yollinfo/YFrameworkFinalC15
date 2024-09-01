@@ -1,6 +1,5 @@
 package ui_automation.utilities;
 
-import com.google.common.base.Function;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
