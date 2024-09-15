@@ -1,9 +1,8 @@
-@regression
 Feature: As an administrator I should be able to view all employees and search.
   Background:
     Given I'm on logged in to OrangeHRM as admin
 
-  @hrm-1 @smoke
+  @hrm-1 @smoke @regression
   Scenario: View All Employees
     And I click on the Employee List
     Then I see employee list table
@@ -11,7 +10,7 @@ Feature: As an administrator I should be able to view all employees and search.
     #Scenario: Verifying employee count
     #Scenario: Verifying Adding employee (for MB-01 user story.)
 
-  @hrm-2
+  @hrm-2 @regression
   Scenario: Adding customer data
     And I click on the Employee List
     #TODO: add new feature for validation of customer email
