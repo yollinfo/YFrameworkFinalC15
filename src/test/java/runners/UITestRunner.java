@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         glue="ui_automation.step_definitions",
         tags="@regression",
         dryRun = false
-        //monochrome = true
+        //monochrome = true  right here to test github
 )
 
 public class UITestRunner {
